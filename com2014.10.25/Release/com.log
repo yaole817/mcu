@@ -1,0 +1,30 @@
+﻿Build started 2014/2/8 17:35:58.
+     1>Project "D:\workspace\downloader\com\com\com.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Release\com.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         D:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Ob1 /Oy- /D WIN32 /D NDEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Release\\" /Fd".\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt com_download.cpp hex2ram.cpp main.cpp
+         com_download.cpp
+         hex2ram.cpp
+         main.cpp
+     1>main.cpp(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : see declaration of 'fopen'
+     1>main.cpp(20): warning C4101: 'port_flag' : unreferenced local variable
+     1>main.cpp(19): warning C4101: 'port_count' : unreferenced local variable
+         Generating Code...
+     1>d:\workspace\downloader\com\com\com_download.cpp(141): warning C4700: uninitialized local variable 'ACK' used
+       Link:
+         D:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Release\com.exe" /INCREMENTAL:NO /NOLOGO odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:".\Release\com.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"D:\workspace\downloader\com\com\Release\com.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Release\com.lib" /MACHINE:X86 .\Release\com_download.obj
+         .\Release\hex2ram.obj
+         .\Release\main.obj
+         com.vcxproj -> D:\workspace\downloader\com\com\.\Release\com.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:".\Release\com.exe;#1" /manifest .\Release\com.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file ".\Release\com.unsuccessfulbuild".
+         Touching ".\Release\com.lastbuildstate".
+     1>Done Building Project "D:\workspace\downloader\com\com\com.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.72

@@ -1,0 +1,99 @@
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 16:23:27 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\..\com\Debug\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND OBJECT(..\..\com\Debug\main.obj)
+
+line level    source
+
+   1          #include <REG51XC.H>
+   2          #include <simae3801.H>
+   3          //void delay_1us(unsigned int num);
+   4          //char i=0;      
+   5          void delay_1us(unsigned int num);
+   6          
+   7          void main(void)
+   8          {  
+   9   1      //      char tyy=0;
+  10   1      //      char t=0;
+  11   1      //      char tt=0;
+  12   1      //      char ttt=0;
+  13   1      //      long text=0;
+  14   1      //      int g=0.0;
+  15   1              PORT0_OUT=0xff;
+  16   1              PORT0_IN=0x00;
+  17   1      
+  18   1              PORT1_OUT=0xff;
+  19   1              PORT1_IN=0x00;
+  20   1      
+  21   1              PORT2_OUT=0xff;
+  22   1              PORT2_IN=0x00;
+  23   1      
+  24   1              PORT3_OUT=0xff;
+  25   1              PORT3_IN=0x00;
+  26   1              
+  27   1      
+  28   1      //      P0=0xff;
+  29   1              
+  30   1              while(1)
+  31   1              {
+  32   2                      P0=0;
+  33   2                      P0=0xff;
+  34   2      //              delay_1us(1000);
+  35   2                      
+  36   2      //              P1=0;
+  37   2      //              P1=0xff;
+  38   2      //              t=65535/255;
+  39   2      //              t=65535%255;
+  40   2      //              tt=t+tt;
+  41   2      //              tt=t*tt;
+  42   2      //              tt=t-tt;
+  43   2              //      P1=P1&0x0f;
+  44   2                      
+  45   2      //              P2=0;
+  46   2      //              P2=0xff;
+  47   2              //      P2=P2&0x0f;
+  48   2      
+  49   2              //      for(t=0;t<255;t++);
+  50   2              //      if(t<4)t=0;
+  51   2              //      P2=0x34;
+  52   2              //      P2++;           
+  53   2      
+  54   2              //      tt=t*tt;
+  55   2              //      tt=t-tt;
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 16:23:27 PAGE 2   
+
+  56   2      
+  57   2      //              P3=0;
+  58   2      //              P3=0xff;
+  59   2              //      P3++;
+  60   2      //              g=(int)(t+tt);
+  61   2      
+  62   2      //              P2=t;
+  63   2                      //P3=0;
+  64   2              //      P0=0;
+  65   2              //      P0=0xff;
+  66   2      
+  67   2              }
+  68   1      }
+  69          
+  70          void delay_1us(unsigned int num)
+  71          {
+  72   1              unsigned int i;
+  73   1              for(i=0;i<num;i++);
+  74   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     70    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

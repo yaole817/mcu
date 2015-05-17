@@ -1,0 +1,87 @@
+C51 COMPILER V9.01   MAIN                                                                  05/19/2014 10:59:14 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\..\..\com\Debug\main.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND OBJECT(..\..\..\com\Debug\main.obj)
+
+line level    source
+
+   1          #include <REG51XC.H>
+   2          #include <simae3801.H>
+   3          //void delay_1us(unsigned int num);
+   4          //unsigned char i=0;
+   5          void I2C_init(void);
+   6          void SendI2CByte(unsigned char c);       
+   7          void main(void)
+   8          {  
+   9   1              PORT1_OUT=0xff;
+  10   1              PORT1_IN=0x00;
+  11   1      //      TMOD=0x10;//设置定时器0为工作方式1 
+  12   1      //      PCON |= 0x10; 
+  13   1      //      TH1=(65535-46080)/256;
+  14   1      //      TL1=(65535-46080)%256;
+  15   1         // PCON = 0x00;
+  16   1        //  DPL=0xff;
+  17   1      //      DPH=0x01;
+  18   1      //      EAL = 1;
+  19   1        //  ET1 = 1;
+  20   1          //TR0 = 1;
+  21   1              
+  22   1              //SER0_EN=1;
+  23   1      //      P0=0xff;
+  24   1              I2C_init();
+  25   1              SendI2CByte(0x55);
+  26   1      
+  27   1              while(1)
+  28   1              {
+  29   2                              
+  30   2              }
+  31   1      }
+  32          /*void timer0() interrupt 1
+  33          {
+  34                  TH0=0xf4;
+  35                  TL0=0x44;
+  36                  P0=~P0;
+  37                  
+  38          }         */
+  39          void I2C_init(void)
+  40          {
+  41   1              I2CCON  &=      01110100;     //控制寄存器,时钟为主时钟的1/256  
+  42   1              I2CSTA   =      0x08;                   
+  43   1      }
+  44          void SendI2CByte(unsigned char c)
+  45          {
+  46   1              
+  47   1              I2CDAT   =      c;
+  48   1      
+  49   1              I2CCON  |=      0x20;      //生成start信号
+  50   1      
+  51   1      //      I2CCON  |=      0x10;      //生成stop信号
+  52   1              
+  53   1      //      I2CCON  |=      0x20;
+  54   1      
+  55   1              I2CCON  |=      0x40;     //控制寄存器,打开I2C中断              
+C51 COMPILER V9.01   MAIN                                                                  05/19/2014 10:59:14 PAGE 2   
+
+  56   1      }
+  57          /*
+  58          void delay_1us(unsigned int num)
+  59          {
+  60                  unsigned int i;
+  61                  for(i=0;i<num;i++);
+  62          } */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     37    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

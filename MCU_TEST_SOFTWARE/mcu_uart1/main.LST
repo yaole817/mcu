@@ -1,0 +1,107 @@
+C51 COMPILER V9.01   MAIN                                                                  05/27/2014 16:55:28 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\..\..\com\Debug\main.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE main.c OMF2 ROM(SMALL) OBJECT(..\..\..\com\Debug\main.obj)
+
+line level    source
+
+   1          #include <REG51XC.H>
+   2          #include <simae3801.H>
+   3          #include <intrins.h>
+   4          #define uchar unsigned char
+   5          
+   6          void InitUART(void)
+   7          {
+   8   1       //   TMOD = 0x20;
+   9   1          S1CON = 0x1c;
+  10   1          S1RELH = 0xDF;
+  11   1          S1RELL = S1RELH ;
+  12   1      //      SM0=0;
+  13   1      //      SM1=1;
+  14   1              T2CON=0x01;
+  15   1              CCEN=0x00;
+  16   1              IEN0=0xA0;
+  17   1              IEN1=0x80;
+  18   1      
+  19   1       //   PCON = 0x00;
+  20   1      //    EAL = 1;
+  21   1       //   IEN2=0x01;
+  22   1      //      ET1=1;
+  23   1      //    TR1 = 1;
+  24   1      //      SER0_EN=1;      
+  25   1      }
+  26          
+  27          void SendOneByte(unsigned char c)
+  28          {
+  29   1      //      P0=~P0;
+  30   1          S1BUF = c;
+  31   1          while(!(S1CON&0x02));
+  32   1          S1CON = 0xfd;
+  33   1              
+  34   1              IEN2=0x01;
+  35   1      }
+  36          
+  37          
+  38          void UARTInterrupt(void) interrupt 4
+  39          {  
+  40   1      //      RI0 = 0;
+  41   1              ES0 = 0;
+  42   1              RI0 = 0;
+  43   1              if(S1BUF!=0xff)
+  44   1                      P0=~P0;
+  45   1          if(RI0)
+  46   1          {  
+  47   2                      
+  48   2              //      RI0 = 0; 
+  49   2             //add your code here!
+  50   2          }
+  51   1         // else
+  52   1           //   TI0 = 0;
+  53   1              ES0 = 1; 
+  54   1      }
+  55          
+C51 COMPILER V9.01   MAIN                                                                  05/27/2014 16:55:28 PAGE 2   
+
+  56          
+  57          void main(void)
+  58          {  
+  59   1              PORT0_OUT=0xff;
+  60   1              PORT0_IN=0x00;
+  61   1              PORT1_OUT=0xff;
+  62   1              PORT1_IN=0x00;  
+  63   1              PORT2_OUT=0xff;
+  64   1              PORT2_IN=0x00;
+  65   1              PORT3_OUT=0xff;
+  66   1              PORT3_IN=0x00;   
+  67   1              InitUART();
+  68   1              while(1)
+  69   1              {
+  70   2                 SendOneByte(0xaa);
+  71   2              //      P2=0;
+  72   2              //      P3=0;
+  73   2              //      P2=255;
+  74   2              //      P3=0xff;
+  75   2              //      printf_string("hello from SAMAE3801");
+  76   2              //      delay1s();
+  77   2              }
+  78   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    109    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

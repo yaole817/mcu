@@ -1,0 +1,279 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\mcu_IO\first_proj.uvproj
+Project File Date:  11/18/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+linking...
+Program Size: data=10.0 xdata=0 code=357
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+linking...
+Program Size: data=10.0 xdata=0 code=357
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA_NEW?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=32.0 xdata=0 code=978
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(11): error C231: 'P0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(12): error C231: 'P1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(13): error C231: 'P2': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(14): error C231: 'P3': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(15): error C231: 'PSW': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(16): error C231: 'ACC': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(17): error C231: 'B': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(18): error C231: 'SP': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(19): error C231: 'DPL': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(20): error C231: 'DPH': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(21): error C231: 'PCON': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(22): error C231: 'TCON': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(23): error C231: 'TMOD': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(24): error C231: 'TL0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(25): error C231: 'TL1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(26): error C231: 'TH0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(27): error C231: 'TH1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(29): error C231: 'IP': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(32): error C231: 'DPL1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(33): error C231: 'DPH1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(34): error C231: 'CKCON': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(35): error C231: 'DPS': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(40): error C231: 'CY': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(41): error C231: 'AC': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(42): error C231: 'F0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(43): error C231: 'RS1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(44): error C231: 'RS0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(45): error C231: 'OV': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(46): error C231: 'P': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(50): error C231: 'TF1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(51): error C231: 'TR1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(52): error C231: 'TF0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(53): error C231: 'TR0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(54): error C231: 'IE1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(55): error C231: 'IT1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(56): error C231: 'IE0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(57): error C231: 'IT0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(62): error C231: 'ET1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(63): error C231: 'EX1': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(64): error C231: 'ET0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(65): error C231: 'EX0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(75): error C231: 'SM0': redefinition
+D:\KEIL\C51\INC\EVATRONIX\REG51.H(76): error C231: 'SM1': redefinition
+compiling I2C.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(71): warning C206: 'wr_byte': missing function-prototype
+MAIN.C(71): error C267: 'wr_byte': requires ANSI-style prototype
+compiling I2C.c...
+I2C.H(26): error C202: 'P1': undefined identifier
+I2C.H(27): error C202: 'P1': undefined identifier
+I2C.H(28): error C202: 'P1': undefined identifier
+I2C.C(10): error C202: 'I2CDATA': undefined identifier
+I2C.C(12): error C202: 'I2CCLK': undefined identifier
+I2C.C(14): error C202: 'I2CDATA': undefined identifier
+I2C.C(16): error C202: 'I2CCLK': undefined identifier
+I2C.C(22): error C202: 'I2CCLK': undefined identifier
+I2C.C(23): error C202: 'I2CDATA': undefined identifier
+I2C.C(25): error C202: 'I2CCLK': undefined identifier
+I2C.C(27): error C202: 'I2CDATA': undefined identifier
+I2C.C(33): error C202: 'I2CCLK': undefined identifier
+I2C.C(34): error C202: 'I2CDATA': undefined identifier
+I2C.C(37): error C202: 'I2CCLK': undefined identifier
+I2C.C(41): error C202: 'I2CDATA': undefined identifier
+I2C.C(42): error C202: 'I2CCLK': undefined identifier
+I2C.C(47): error C202: 'I2CCLK': undefined identifier
+I2C.C(49): error C202: 'I2CDATA': undefined identifier
+I2C.C(51): error C202: 'I2CCLK': undefined identifier
+I2C.C(53): error C202: 'I2CCLK': undefined identifier
+I2C.C(58): error C202: 'I2CCLK': undefined identifier
+I2C.C(60): error C202: 'I2CDATA': undefined identifier
+I2C.C(62): error C202: 'I2CCLK': undefined identifier
+I2C.C(64): error C202: 'I2CCLK': undefined identifier
+I2C.C(73): error C202: 'I2CCLK': undefined identifier
+I2C.C(76): error C202: 'I2CDATA': undefined identifier
+I2C.C(80): error C202: 'I2CDATA': undefined identifier
+I2C.C(83): error C202: 'I2CCLK': undefined identifier
+I2C.C(86): error C202: 'I2CCLK': undefined identifier
+I2C.C(95): error C202: 'I2CCLK': undefined identifier
+I2C.C(96): error C202: 'I2CDATA': undefined identifier
+I2C.C(98): error C202: 'I2CCLK': undefined identifier
+I2C.C(100): error C202: 'I2CDATA': undefined identifier
+I2C.C(106): error C202: 'I2CDATA': undefined identifier
+I2C.C(107): error C202: 'I2CCLK': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(72): warning C206: 'wr_byte': missing function-prototype
+MAIN.C(72): error C267: 'wr_byte': requires ANSI-style prototype
+compiling I2C.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA_NEW?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=33.0 xdata=0 code=987
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(111): error C202: 'REN': undefined identifier
+MAIN.C(112): error C202: 'EA': undefined identifier
+MAIN.C(115): error C202: 'ES': undefined identifier
+compiling I2C.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA_NEW?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=35.0 xdata=0 code=1039
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA_NEW?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=35.0 xdata=0 code=1029
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA_NEW?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=35.0 xdata=0 code=1029
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(64): warning C209: '_wr_data_new': too few actual parameters
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=47.0 xdata=0 code=954
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=47.0 xdata=0 code=957
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=47.0 xdata=0 code=957
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIME_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WR_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RD_DATA?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ERASE_FLASH_CHIP?I2C
+Program Size: data=47.0 xdata=0 code=1049
+creating hex file from "..\好用的程序\com2014.10.25\Debug\mcu_test"...
+"..\好用的程序\com2014.10.25\Debug\mcu_test" - 0 Error(s), 4 Warning(s).

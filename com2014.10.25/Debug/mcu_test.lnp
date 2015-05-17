@@ -1,0 +1,5 @@
+"..\好用的程序\com2014.10.25\Debug\STARTUP.obj",
+"..\好用的程序\com2014.10.25\Debug\main.obj",
+"..\好用的程序\com2014.10.25\Debug\I2C.obj" 
+TO "..\好用的程序\com2014.10.25\Debug\mcu_test" 
+PRINT(".\mcu_test.m51") RAMSIZE(256) 

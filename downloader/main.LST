@@ -1,0 +1,300 @@
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 15:44:00 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <intrins.h>
+   3          #include <string.h>
+   4          #include <stdio.h>
+   5          #include "i2c.h"
+   6          
+   7          sfr AUXR   = 0x8E;
+   8          
+   9          enum {WRITE,READ,SET_ADDR,TEST,ERASE} order,last_order;
+  10          enum {IDLE,WRITING,READING,RECEIVING,WR_RD_TEST,ERASING} status;
+  11          char step=0;
+  12          char length;
+  13          int addr;
+  14          int count_1s=0;
+  15          char data_buf[16];
+  16          char string_buf[20];
+  17          char CMD[3]={"ID"};
+  18          void InitUART(void)
+  19          {
+  20   1          TMOD = 0x20;
+  21   1          SCON = 0x50;
+  22   1          TH1 = 0xFD;
+  23   1          TL1 = TH1;
+  24   1          PCON = 0x00;
+  25   1          EA = 1;
+  26   1          ES = 1;
+  27   1          TR1 = 1;
+  28   1      }
+  29          //*********************************
+  30          //timer interupt initial
+  31          void InitTimer0(void)
+  32          {
+  33   1          TMOD |= 0x01;
+  34   1          TH0 = 0x0D4;
+  35   1          TL0 = 0x0CD;
+  36   1          EA = 1;
+  37   1          ET0 = 1;
+  38   1          TR0 = 1;
+  39   1      }
+  40          
+  41          void delay1s(void)   //Îó²î -0.000000000125us
+  42          {
+  43   1          unsigned char a,b,c;
+  44   1          for(c=212;c>0;c--)
+  45   1              for(b=160;b>0;b--)
+  46   1                  for(a=80;a>0;a--);
+  47   1          _nop_();  //if Keil,require use intrins.h
+  48   1          _nop_();  //if Keil,require use intrins.h
+  49   1      }
+  50          
+  51          
+  52          void SendOneByte(unsigned char c)
+  53          {
+  54   1          SBUF = c;
+  55   1          while(!TI);
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 15:44:00 PAGE 2   
+
+  56   1          TI = 0;
+  57   1      }
+  58          void send_str_len(char *p,int len)
+  59          {
+  60   1              while(len-- > 0 )
+  61   1              {
+  62   2                      SendOneByte(*p++);
+  63   2                      }
+  64   1      }
+  65          void send_string(char *p)
+  66          {
+  67   1              while(*p!='\0')
+  68   1                      SendOneByte(*p++);
+  69   1      }
+  70          
+  71          void main(void)
+  72          {
+  73   1               char write_data[4]={0xff,0Xff,0,0};
+  74   1        // char read_data[2];
+  75   1        AUXR = AUXR|0x40;  // T1, 1T Mode
+  76   1              AUXR = AUXR|0x80;  // T0, 1T Mode
+  77   1      
+  78   1          InitUART();
+  79   1              InitTimer0();
+  80   1              while(1)
+  81   1              {                
+  82   2                              
+  83   2                              if(status==ERASING)
+  84   2                        {             
+  85   3                                      //i2c_write(addr,data_buf,len);
+  86   3                                      erase_flash_chip();
+  87   3                                      //sprintf(string_buf,"wr 0x%X,%d\n",addr,(int)length);
+  88   3                                      //send_string(string_buf);
+  89   3                                      //send_string(data_buf);
+  90   3                                              SendOneByte(0xaa);
+  91   3                                        status=IDLE;          
+  92   3                        }
+  93   2                        if (status==RECEIVING)
+  94   2                        {
+  95   3                              if(count_1s>1000)
+  96   3                                {
+  97   4                                              status=IDLE;
+  98   4                                              send_string("TIMEOUT");
+  99   4                                              //timeout();
+ 100   4                                }
+ 101   3                              }
+ 102   2                        if(status==WRITING)
+ 103   2                        {             
+ 104   3                                      //i2c_write(addr,data_buf,len);
+ 105   3                                      //erase_flash_chip();
+ 106   3                                              wr_data(addr,data_buf,length);
+ 107   3                                      //sprintf(string_buf,"wr 0x%X,%d\n",addr,(int)length);
+ 108   3                                      //send_string(string_buf);
+ 109   3                                      //send_string(data_buf);
+ 110   3                                      SendOneByte(0xaa);
+ 111   3                                      status=IDLE;            
+ 112   3                        }
+ 113   2                        else if(status==WR_RD_TEST)
+ 114   2                        {             
+ 115   3                                      //erase_flash_chip();
+ 116   3                                      delay(10000);
+ 117   3                                      //wr_data(0x0000,write_data,4);
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 15:44:00 PAGE 3   
+
+ 118   3                                      delay(1000);
+ 119   3                                      rd_data(0x0000,write_data,4);
+ 120   3                                      send_str_len(write_data,4);
+ 121   3                                      status=IDLE;
+ 122   3                        }             
+ 123   2                              else if(status==READING)
+ 124   2                        {             
+ 125   3                                      //i2c_read(addr,data_buf,len);
+ 126   3                                        sprintf(string_buf,"rd adr%X,len%d\n",addr,(int)length);
+ 127   3                                  send_string(string_buf);
+ 128   3                                      status=IDLE;
+ 129   3                        }     
+ 130   2      
+ 131   2                        I2CEN=1;
+ 132   2      
+ 133   2              }
+ 134   1      }
+ 135          void detect_CMD(char temp)
+ 136          {
+ 137   1              //SendOneByte(temp);
+ 138   1              CMD[0]=CMD[1];
+ 139   1              CMD[1]=temp;
+ 140   1              last_order=order;
+ 141   1              if ((CMD[0]=='A')&&(CMD[1]=='D')) 
+ 142   1              {
+ 143   2                      order=SET_ADDR;
+ 144   2                      status=RECEIVING;
+ 145   2                      CMD[0]=0;
+ 146   2                      CMD[1]=0;
+ 147   2                      step=0;
+ 148   2                      count_1s=0;
+ 149   2                      }
+ 150   1              if ((CMD[0]=='T')&&(CMD[1]=='E')) 
+ 151   1              {
+ 152   2                      order=TEST;
+ 153   2                      status=WR_RD_TEST;
+ 154   2                      CMD[0]=0;
+ 155   2                      CMD[1]=0;
+ 156   2                      step=0;
+ 157   2                      count_1s=0;
+ 158   2                      }
+ 159   1              if ((CMD[0]=='W')&&(CMD[1]=='R')) 
+ 160   1              {       
+ 161   2                      order=WRITE;
+ 162   2                      length=0;
+ 163   2                      status=RECEIVING;
+ 164   2                      CMD[0]=0;
+ 165   2                      CMD[1]=0;
+ 166   2                      step=0;
+ 167   2                      count_1s=0;
+ 168   2                      }
+ 169   1              if ((CMD[0]=='R')&&(CMD[1]=='D')) 
+ 170   1              {
+ 171   2                      order=READ;     
+ 172   2                      status=RECEIVING;
+ 173   2                      CMD[0]=0;
+ 174   2                      CMD[1]=0;
+ 175   2                      step=0 ;
+ 176   2                      count_1s=0;
+ 177   2                      }
+ 178   1              if ((CMD[0]=='E')&&(CMD[1]=='R')) 
+ 179   1              {
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 15:44:00 PAGE 4   
+
+ 180   2                      order=ERASE;    
+ 181   2                      status=ERASING;
+ 182   2                      CMD[0]=0;
+ 183   2                      CMD[1]=0;
+ 184   2                      step=0 ;
+ 185   2                      count_1s=0;
+ 186   2                      }
+ 187   1                      
+ 188   1                      
+ 189   1      }
+ 190          void receive_data(char temp)
+ 191          {
+ 192   1      
+ 193   1              if (status==RECEIVING)
+ 194   1              {       count_1s=0;//set 1s timeout count when a char received in receiving packet mode;
+ 195   2                      if(order==SET_ADDR)
+ 196   2                      {
+ 197   3                              switch(step)
+ 198   3                              {
+ 199   4                                      case 0:addr=temp;break;
+ 200   4                                      case 1:addr=addr*256+temp;
+ 201   4                                                 status=IDLE;
+ 202   4                                                 SendOneByte(0xaa);
+ 203   4                                      default:break;
+ 204   4                              }
+ 205   3                         
+ 206   3                      }
+ 207   2                      if(order==WRITE)
+ 208   2                      {
+ 209   3                              switch(step)
+ 210   3                              {
+ 211   4                                      case 0:length=temp;break;
+ 212   4                                                      
+ 213   4                                      default: 
+ 214   4                                                      if(step<length)
+ 215   4                                                      {
+ 216   5                                                              data_buf[step-1]=temp;
+ 217   5                                                              }
+ 218   4                                                      else
+ 219   4                                                      {               
+ 220   5                                                                      data_buf[step-1]=temp;
+ 221   5                                                                      status=WRITING;
+ 222   5                                                              }
+ 223   4                                      }               
+ 224   3                              }
+ 225   2                       if(order==READ)
+ 226   2                      {
+ 227   3                              switch(step)
+ 228   3                              {
+ 229   4                                      case 0:length=temp;status=READING;break;
+ 230   4                                      default:   break;
+ 231   4                                              
+ 232   4                                      }               
+ 233   3                              }
+ 234   2                       step++;
+ 235   2              }
+ 236   1              
+ 237   1      }
+ 238                                                                                                  
+ 239          void UARTInterrupt(void) interrupt 4
+ 240          {
+ 241   1              char temp;
+C51 COMPILER V9.01   MAIN                                                                  05/14/2015 15:44:00 PAGE 5   
+
+ 242   1          if(RI)
+ 243   1          {
+ 244   2              RI = 0;
+ 245   2              temp=SBUF;
+ 246   2                      
+ 247   2                      if (status==IDLE)
+ 248   2                      {
+ 249   3                         detect_CMD(temp);
+ 250   3                              }
+ 251   2                      else 
+ 252   2                      receive_data(temp);
+ 253   2                       
+ 254   2          }
+ 255   1          else
+ 256   1              TI = 0;
+ 257   1      }
+ 258           //timer 1s tik tok
+ 259          void timer_1s()
+ 260          {
+ 261   1              count_1s++;
+ 262   1      }
+ 263          void Timer0Interrupt(void) interrupt 1
+ 264          {
+ 265   1          TH0 = 0x0D4;
+ 266   1          TL0 = 0x0CD;
+ 267   1          //add your code here!
+ 268   1              timer_1s();
+ 269   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    700    ----
+   CONSTANT SIZE    =     28    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     48      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,95 @@
+C51 COMPILER V9.01   MAIN                                                                  05/27/2014 13:50:24 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\..\..\com\Debug\main.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND OBJECT(..\..\..\com\Debug\main.obj)
+
+line level    source
+
+   1          #include <REG51XC.H>
+   2          #include <simae3801.H>
+   3          //void delay_1us(unsigned int num);
+   4          //unsigned char i=0;     
+   5          void T2_init(void);
+   6          void main(void)
+   7          {  
+   8   1              PORT0_OUT=0xff;
+   9   1              PORT0_IN=0x00;
+  10   1      //      TMOD=0x10;//设置定时器1为工作方式1 
+  11   1      //      PCON |= 0x10; 
+  12   1      //      TH1=(65535-46080)/256;
+  13   1      //      TL1=(65535-46080)%256;
+  14   1         // PCON = 0x00;
+  15   1        //  DPL=0xff;
+  16   1      //      DPH=0x01;
+  17   1      //      
+  18   1       //   ET2 = 1;
+  19   1      //    TR2 = 1;
+  20   1              
+  21   1              //SER0_EN=1;
+  22   1      //      P0=0xff;
+  23   1              T2_init();
+  24   1              //CRCL=0xF0;
+  25   1              //CCL1=0xF2;
+  26   1              //CCL2=0xF4;
+  27   1              //CCL3=0xF6;
+  28   1      
+  29   1              while(1)
+  30   1              {
+  31   2                      
+  32   2              }
+  33   1      }
+  34          void timer0() interrupt 5
+  35          {
+  36   1      /*      if((IRCON&0x01)==1)
+  37   1              {
+  38   1                      IRCON=IRCON&0xfe;
+  39   1              }
+  40   1              if((IRCON&0x02)==1)
+  41   1              {
+  42   1                       IRCON=IRCON&0xfd;
+  43   1              //       TH2=0xFA;
+  44   1              //       TL2=0xF0;
+  45   1                       
+  46   1              }        */
+  47   1              IRCON=0;
+  48   1              P0=~P0;
+  49   1      
+  50   1              
+  51   1      }
+  52          void T2_init(void)
+  53          {
+  54   1              TL2=0xF0;
+  55   1              TH2=0xFA;
+C51 COMPILER V9.01   MAIN                                                                  05/27/2014 13:50:24 PAGE 2   
+
+  56   1      //      CCEN=0xff;
+  57   1              T2CON=0x01;
+  58   1              CCEN=0x00;
+  59   1              IEN0=0xA0;
+  60   1              IEN1=0x80;
+  61   1              //EAL = 1;
+  62   1      //      CC
+  63   1      //      IEN1=0x00;
+  64   1      }
+  65          /*
+  66          void delay_1us(unsigned int num)
+  67          {
+  68                  unsigned int i;
+  69                  for(i=0;i<num;i++);
+  70          } */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     42    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

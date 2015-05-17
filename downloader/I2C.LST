@@ -1,0 +1,256 @@
+C51 COMPILER V9.01   I2C                                                                   05/14/2015 15:44:00 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE I2C
+OBJECT MODULE PLACED IN I2C.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE I2C.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "i2c.h"
+   2          void delay(int x)
+   3          {       
+   4   1              int i;
+   5   1              for(i=0;i<x;i++);               
+   6   1      }
+   7          void i2c_start()
+   8          {
+   9   1              I2C_SDA_OUT;
+  10   1              I2C_SDA_H;
+  11   1              delay(3);
+  12   1          I2C_SCL_H;
+  13   1              delay(3);
+  14   1              I2C_SDA_L;
+  15   1              delay(3);
+  16   1              I2C_SCL_L;
+  17   1              delay(3);
+  18   1      }
+  19          void i2c_stop()
+  20          {
+  21   1              I2C_SDA_OUT;
+  22   1              I2C_SCL_L; 
+  23   1              I2C_SDA_L;      
+  24   1              delay(3);
+  25   1              I2C_SCL_H;
+  26   1              delay(3); 
+  27   1              I2C_SDA_H;
+  28   1              delay(3);
+  29   1      }
+  30          void wait_ack()
+  31          {
+  32   1              I2C_SDA_OUT;
+  33   1              I2C_SCL_L;
+  34   1              I2C_SDA_H;
+  35   1              I2C_SDA_IN;
+  36   1              delay(10);
+  37   1              I2C_SCL_H;
+  38   1              delay(3);
+  39   1              //while(I2C_SDA_RD);
+  40   1              delay(3);
+  41   1              I2C_SDA_L;
+  42   1              I2C_SCL_L;      
+  43   1      }
+  44          void ack()
+  45          {
+  46   1              I2C_SDA_OUT;
+  47   1              I2C_SCL_L;
+  48   1              delay(3);
+  49   1              I2C_SDA_L;
+  50   1              delay(3);
+  51   1              I2C_SCL_H;
+  52   1              delay(3);
+  53   1              I2C_SCL_L;      
+  54   1      }
+  55          void noack()
+C51 COMPILER V9.01   I2C                                                                   05/14/2015 15:44:00 PAGE 2   
+
+  56          {
+  57   1              I2C_SDA_OUT;
+  58   1              I2C_SCL_L;
+  59   1              delay(3);
+  60   1              I2C_SDA_H;
+  61   1              delay(3);
+  62   1              I2C_SCL_H;
+  63   1              delay(3);
+  64   1              I2C_SCL_L;
+  65   1      }
+  66           
+  67          void wr_byte(uchar temp)
+  68          {
+  69   1              uchar i;
+  70   1              I2C_SDA_OUT;
+  71   1              for(i=0;i<8;i++)
+  72   1              {
+  73   2                      I2C_SCL_L;
+  74   2                      if(temp&(0x80>>i))
+  75   2                      {
+  76   3                              I2C_SDA_H;
+  77   3                      }
+  78   2                      else 
+  79   2                      {
+  80   3                              I2C_SDA_L;
+  81   3                      }
+  82   2                      delay(3);
+  83   2                      I2C_SCL_H;
+  84   2                      delay(3);
+  85   2                      }
+  86   1              I2C_SCL_L;
+  87   1      } 
+  88          char rd_byte()
+  89          {
+  90   1              uchar i;
+  91   1              uchar temp;
+  92   1              I2C_SDA_IN;
+  93   1              for(i=0;i<8;i++)
+  94   1              {
+  95   2                      I2C_SCL_L;
+  96   2                      I2C_SDA_H;
+  97   2                      delay(3);
+  98   2                      I2C_SCL_H;
+  99   2                      delay(3);
+ 100   2                      if(I2C_SDA_RD) 
+ 101   2                              temp|=(0x80>>i);
+ 102   2                      else 
+ 103   2                              temp&=~(0x80>>i);
+ 104   2                      delay(3);
+ 105   2                      }
+ 106   1              I2C_SDA_L;
+ 107   1              I2C_SCL_L;
+ 108   1              return temp;
+ 109   1      }
+ 110          void wr_data(short addr,uchar *data_buf,uchar len)
+ 111          {
+ 112   1              uchar buf;
+ 113   1              uchar i;
+ 114   1              i2c_start();
+ 115   1      
+ 116   1              wr_byte(WRITE_CMD);
+ 117   1              wait_ack();
+C51 COMPILER V9.01   I2C                                                                   05/14/2015 15:44:00 PAGE 3   
+
+ 118   1      
+ 119   1              buf=addr>>8;
+ 120   1              wr_byte(buf);
+ 121   1              wait_ack();
+ 122   1      
+ 123   1              buf=addr&0xff;
+ 124   1              wr_byte(buf);
+ 125   1              wait_ack();
+ 126   1              //i2c_start();
+ 127   1              for(i=0;i<len;i++)
+ 128   1              {
+ 129   2                      wr_byte(data_buf[i]);
+ 130   2                      wait_ack();
+ 131   2              }
+ 132   1              i2c_stop();
+ 133   1                      
+ 134   1      }
+ 135          
+ 136          void rd_data(short addr,uchar *data_buf,uchar len)
+ 137          {                                                                                                               
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                              
+ 138   1              uchar buf;
+ 139   1              uchar i;
+ 140   1              i2c_start();
+ 141   1      
+ 142   1              wr_byte(WRITE_CMD);
+ 143   1              wait_ack();
+ 144   1      
+ 145   1              buf=addr>>8;
+ 146   1              wr_byte(buf);
+ 147   1              wait_ack();
+ 148   1      
+ 149   1              buf=addr&0xff;
+ 150   1              wr_byte(buf);
+ 151   1              wait_ack();
+ 152   1      
+ 153   1              i2c_start();
+ 154   1              delay(100);
+ 155   1              i2c_start();
+ 156   1              /*
+ 157   1              delay(3);
+ 158   1              I2C_SCL_H;
+ 159   1              delay(3);
+ 160   1              I2C_SCL_L;
+ 161   1                      delay(3);
+ 162   1              I2C_SCL_H;
+ 163   1              delay(3);
+ 164   1              I2C_SCL_L;*/
+ 165   1              
+C51 COMPILER V9.01   I2C                                                                   05/14/2015 15:44:00 PAGE 4   
+
+ 166   1              
+ 167   1              wr_byte(READ_CMD);
+ 168   1              wait_ack();
+ 169   1              
+ 170   1              for(i=0;i<len-1;i++)
+ 171   1              {
+ 172   2                      data_buf[i]=rd_byte();
+ 173   2                      ack();
+ 174   2              }
+ 175   1              data_buf[i]=rd_byte();
+ 176   1              noack();
+ 177   1              //ack();
+ 178   1              i2c_stop();
+ 179   1                      
+ 180   1      }
+ 181          
+ 182          
+ 183          void erase_flash_chip()
+ 184          {                                                                                                               
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                                                                                                                        
+             -                              
+ 185   1      
+ 186   1              i2c_start();
+ 187   1      
+ 188   1              wr_byte(WRITE_CMD);
+ 189   1              wait_ack();
+ 190   1      
+ 191   1              wr_byte(0xF3);
+ 192   1              wait_ack();
+ 193   1              
+ 194   1              wr_byte(0);
+ 195   1              wait_ack();
+ 196   1      
+ 197   1      
+ 198   1              i2c_stop();
+ 199   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    475    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,63 @@
+C51 COMPILER V9.01   MAIN                                                                  06/11/2014 14:52:18 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\..\..\com\Debug\main.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND OBJECT(..\..\..\com\Debug\main.obj)
+
+line level    source
+
+   1          #include <REG51XC.H>
+   2          #include <simae3801.H>
+   3          //void delay_1us(unsigned int num);
+   4          //unsigned char i=0;
+   5          sfr             ADC_CONTROL             =       0xD9;
+   6          sfr             ADC_CONFIG              =       0xDA;
+   7          sfr             ADC_DATA_H              =       0xDB;
+   8          sfr             ADC_DATA_L              =       0xDC;
+   9          
+  10          void ADInit(void);       
+  11          void main(void)
+  12          {  
+  13   1              PORT0_OUT=0xff;
+  14   1              PORT0_IN=0x00;
+  15   1      
+  16   1      //      PORT1_OUT=0xff;
+  17   1      //      PORT1_IN=0x00;
+  18   1      
+  19   1      //      PORT2_OUT=0xff;
+  20   1      //      PORT2_IN=0x00;
+  21   1      
+  22   1              PORT3_OUT=0xff;
+  23   1              PORT3_IN=0x00;
+  24   1              P0=0;
+  25   1              P3=0;
+  26   1      
+  27   1              ADInit();
+  28   1              while(1);
+  29   1      }
+  30          
+  31          void ADInit(void)
+  32          {
+  33   1              ADC_CONTROL=0x05;
+  34   1              ADC_CONFIG=0x00;
+  35   1              while((ADC_DATA_H&0x10));
+  36   1              P3=ADC_DATA_H;
+  37   1              P0=0x55;//ADC_DATA_L;           
+  38   1      }
+  39          
+  40          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     47    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

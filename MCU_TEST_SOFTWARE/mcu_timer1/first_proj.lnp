@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"main.obj" 
+TO "first_proj" 
+RAMSIZE(256) 
